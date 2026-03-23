@@ -13,6 +13,7 @@ const criteriaHelper = require(MODULES_BASE_PATH + "/criteria/helper");
 const entityTypesHelper = require(MODULES_BASE_PATH + "/entityTypes/helper");
 const userRolesHelper = require(MODULES_BASE_PATH + "/userRoles/helper");
 const userService = require(ROOT_PATH + "/generics/services/users");
+const crypto = require("crypto");
 
 /**
     * SolutionsHelper
@@ -1151,7 +1152,7 @@ module.exports = class SolutionsHelper {
 
             if (duplicateSolutionDocument.type == messageConstants.common.OBSERVATION) {
 
-              let link = await gen.utils.md5Hash(duplicateSolutionDocument._id + "###" + userId);
+              let link = crypto.randomBytes(16).toString("hex");
 
               await this.updateSolutionDocument
                 (

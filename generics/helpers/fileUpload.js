@@ -14,10 +14,7 @@ let File = function(path) {
         names,
         function(name, callback) {
           //create fileName
-          let hash = crypto
-            .createHash("md5")
-            .update(new Date().getTime() + ++f + "")
-            .digest("hex");
+          let hash = crypto.randomBytes(16).toString("hex");
 
           if (!filename) newname = hash + "." + files[name].name.split(".")[1];
           else newname = files[name].name;

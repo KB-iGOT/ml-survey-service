@@ -15,6 +15,7 @@ const mediaFilesHelper = require(MODULES_BASE_PATH + "/mediaFiles/helper");
 const pollSubmissionDocumentHelper = require(MODULES_BASE_PATH +
   "/pollSubmissions/documents");
 const coreService = require(ROOT_PATH + "/generics/services/core");
+const crypto = require("crypto");
 
 /**
  * PollsHelper
@@ -228,9 +229,7 @@ module.exports = class PollsHelper {
 
         let createPollResult = await database.models.polls.create(pollDocument);
 
-        let link = await gen.utils.md5Hash(
-          userId + "###" + createPollResult._id
-        );
+        let link = crypto.randomBytes(16).toString("hex");
 
         await this.updatePollDocument(
           { _id: createPollResult._id },
