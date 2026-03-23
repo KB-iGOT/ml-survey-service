@@ -1,5 +1,4 @@
 const uuid = require('uuid/v4');
-const md5 = require("md5");
 
 function camelCaseToTitleCase(in_camelCaseString) {
   var result = in_camelCaseString // "ToGetYourGEDInTimeASongAboutThe26ABCsIsOfTheEssenceButAPersonalIDCardForUser456InRoom26AContainingABC26TimesIsNotAsEasyAs123ForC3POOrR2D2Or2R2D"
@@ -224,16 +223,6 @@ function generateUUId() {
   return uuid();
 }
 
-/**
-  * md5 hash
-  * @function
-  * @name md5Hash
-  * @returns {String} returns uuid.  
-*/
-
-function md5Hash(value) {
-  return md5(value);
-}
 
 /**
   * Remove duplicates from array
@@ -328,7 +317,6 @@ module.exports = {
   epochTime : epochTime,
   isValidMongoId : isValidMongoId,
   generateUUId : generateUUId,
-  md5Hash : md5Hash,
   removeDuplicatesFromArray : removeDuplicatesFromArray,
   convertStringToBoolean : convertStringToBoolean,
   checkIfValidUUID : checkIfValidUUID,

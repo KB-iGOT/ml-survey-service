@@ -27,6 +27,8 @@ const questionsHelper = require(MODULES_BASE_PATH + "/questions/helper");
 const userProfileService = require(ROOT_PATH + "/generics/services/users");
 const programUsersHelper = require(MODULES_BASE_PATH + "/programUsers/helper");
 const programJoinEnabled = process.env.PROGRAM_JOIN_ON_OFF
+const crypto = require("crypto");
+
 /**
  * SurveysHelper
  * @class
@@ -378,7 +380,7 @@ module.exports = class SurveysHelper {
         );
 
         if (newSolution._id) {
-          let link = await gen.utils.md5Hash(userId + "###" + newSolution._id);
+          let link = crypto.randomBytes(16).toString("hex");
 
           await solutionsHelper.updateSolutionDocument(
             { _id: newSolution._id },
